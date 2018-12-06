@@ -16,10 +16,13 @@
         <mat-icon>list</mat-icon>
         Einkaufsliste
       </a>
-      <a
-        mat-list-item [routerLink]="[ '/login' ]">
+      <a mat-list-item [routerLink]="[ '/login' ]">
         <mat-icon>power_settings_new</mat-icon>
-        {{ btnLoginName }}
+        Anmelden
+      </a>
+      <a mat-list-item [routerLink]="[ '/home' ]">
+        <mat-icon>power_settings_new</mat-icon>
+        Abmelden
       </a>
     </mat-nav-list>
   </mat-sidenav>

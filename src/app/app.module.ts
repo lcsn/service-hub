@@ -10,6 +10,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ShoppingListHeaderComponent } from './feature/shopping-list/shopping-list-header/shopping-list-header.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginComponent } from './auth/login/login.component';
     NavigationComponent,
     ShoppingListComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ShoppingListHeaderComponent
   ],
   imports: [
     BrowserModule,
