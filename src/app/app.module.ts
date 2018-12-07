@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ShoppingListComponent } from './feature/shopping-list/shopping-list.component';
 import { AngularMaterialModule } from './angular-material.module';
@@ -22,6 +23,7 @@ import { ShoppingListHeaderComponent } from './feature/shopping-list/shopping-li
     ShoppingListHeaderComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,

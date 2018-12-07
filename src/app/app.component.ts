@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FirebaseService } from './__services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'service-app';
+
+  constructor(private firebaseService: FirebaseService) {
+
+  }
+
+  ngOnInit() {
+    this.firebaseService.initFirebase()
+    .then(() => {
+      console.log('Firebase initialized!');
+    });
+  }
+
 }
