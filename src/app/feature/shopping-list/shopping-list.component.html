@@ -1,14 +1,36 @@
 <app-shopping-list-header></app-shopping-list-header>
 <div class="container">
-    <input
-        style="display: none;"
-        type="file"
-        (change)="onFileChanged($event)"
-        #fileInput>
-    <button
-        (click)="fileInput.click()">
-        Select File</button>
-    <button
-        (click)="onUpload()">
-        Upload!</button>
+  <div class="col-sm-12">
+    <div class="row">
+      <ng-container *ngIf="fileUrl != null; else exampleImage">
+          <img ng-if [src]="fileUrl" alt="{{ selectedFile?.name }}" class="img-responsive" style="max-height: 300px">
+      </ng-container>
+      <ng-template #exampleImage>
+        <mat-icon style="font-size: 300px; height: 300px;">photo</mat-icon>
+      </ng-template>
+    </div>
+  </div>
 </div>
+
+<div class="button-row">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="fileInput.click()">
+    <mat-icon>add_a_photo</mat-icon>
+  </button> 
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onUpload()"
+    [disabled]="selectedFile === null">
+    <mat-icon>cloud_upload</mat-icon>
+  </button>
+</div>
+<input
+  style="display: none;"
+  type="file"
+  (change)="onFileChanged($event)"
+  #fileInput>
+<mat-progress-bar class="footer" mode="indeterminate" *ngIf="uploading"></mat-progress-bar>
