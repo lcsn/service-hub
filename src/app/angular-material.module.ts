@@ -7,7 +7,12 @@ import {
   MatListModule,
   MatCardModule,
   MatMenuModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatInputModule,
+  MatDividerModule
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +24,12 @@ import {
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatDividerModule
   ],
   exports: [
     MatToolbarModule,
@@ -29,7 +39,12 @@ import {
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatDividerModule
   ]
 })
 export class AngularMaterialModule { }

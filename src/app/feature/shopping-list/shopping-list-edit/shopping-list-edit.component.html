@@ -1,0 +1,38 @@
+
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <div class="row">
+        <form [formGroup]="newShoppingListForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Name für Einkaufsliste" 
+                formControlName="name">
+            </mat-form-field>
+            
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled] ="!newShoppingListForm.valid">Erstellen</button>
+          </form>
+    </div>
+  </div>
+</div>
+<!-- 
+<div class="example-container">
+  <form [formGroup]="newShoppingListForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Name für Einkaufsliste" 
+        formControlName="name">
+    </mat-form-field>
+    
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled] ="!newShoppingListForm.valid">Erstellen</button>
+  </form>
+</div> -->
