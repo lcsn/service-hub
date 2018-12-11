@@ -1,38 +1,20 @@
 <h3 mat-subheader>{{ title }}</h3>
-<div class="container-fluid">
-  <div class="col-sm-12">
-    <div class="row">
-        <form [formGroup]="newShoppingListForm" (ngSubmit)="onSubmit()">
-            <mat-form-field>
-              <input
-                matInput
-                placeholder="Name für Einkaufsliste" 
-                formControlName="name">
-            </mat-form-field>
-            
-            <button
-              mat-raised-button
-              color="primary"
-              type="submit"
-              [disabled] ="!newShoppingListForm.valid">Erstellen</button>
-          </form>
-    </div>
-  </div>
-</div>
-<!-- 
-<div class="example-container">
-  <form [formGroup]="newShoppingListForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="shoppingListForm" (ngSubmit)="onSubmit()">
+  <div class="my-container">
     <mat-form-field>
-      <input
-        matInput
-        placeholder="Name für Einkaufsliste" 
-        formControlName="name">
+      <input matInput placeholder="Name für Einkaufsliste" formControlName="name">
     </mat-form-field>
-    
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled] ="!newShoppingListForm.valid">Erstellen</button>
-  </form>
-</div> -->
+
+    <mat-form-field>
+      <textarea matInput placeholder="Beschreibung"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Select">
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <hr>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!shoppingListForm.valid">Erstellen</button>
+  </div>
+</form>

@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ShoppingListService } from 'src/app/__services/shopping-list.service';
+import { ShoppingList } from 'src/app/__model/shopping-list.model';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -12,10 +14,12 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
 
   title: string;
   editMode = false;
-  newShoppingListForm: FormGroup;
+  shoppingListForm: FormGroup;
   routeParamsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private shoppingListService: ShoppingListService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params
@@ -27,7 +31,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     this.initialize();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.routeParamsSubscription.unsubscribe();
   }
 
@@ -37,13 +41,18 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     } else {
       this.title = 'Neue Liste'
     }
-    this.newShoppingListForm = new FormGroup({
+    this.shoppingListForm = new FormGroup({
       'name': new FormControl(null, [Validators.required])
     });
   }
 
   onSubmit() {
-    console.log(this.newShoppingListForm);
+    console.log(this.shoppingListForm);
+    if (this.shoppingListForm.valid) {
+      const name = this.shoppingListForm.value.name;
+      this.shoppingListService.addShoppingList(new ShoppingList(name, []));
+      this.router.navigate(['shopping/lists'], { queryParamsHandling: 'preserve' });
+    }
   }
 
 }
