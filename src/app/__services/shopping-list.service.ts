@@ -10,9 +10,9 @@ export class ShoppingListService {
   onShoppingListAdded = new Subject<ShoppingList[]>();
 
   shoppingLists: ShoppingList[] = [
-    new ShoppingList('Wocheneinkauf 1', []),
-    new ShoppingList('Wocheneinkauf 2', []),
-    new ShoppingList('Wocheneinkauf 3', [])
+    new ShoppingList('ABC', []),
+    new ShoppingList('DEF', []),
+    new ShoppingList('GHI', [])
   ];
 
   constructor() { }

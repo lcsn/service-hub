@@ -4,7 +4,11 @@ import * as firebase from 'firebase/app';
 import { FirebaseService } from 'src/app/__services/firebase.service';
 import { ImageService } from 'src/app/__services/image.service';
 import { Subscription } from 'rxjs';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { ArticleService } from 'src/app/__services/article.service';
+import { Article } from 'src/app/__model/article.model';
+import { Image } from 'src/app/__model/image.model';
 
 @Component({
   selector: 'app-article-list-edit',
@@ -20,9 +24,13 @@ export class ArticleListEditComponent implements OnInit, OnDestroy {
   fileUrl: any;
   uploading = false;
 
+  articleForm: FormGroup;
+
   constructor(private firebaseService: FirebaseService,
+    private articleService: ArticleService,
     private imageService: ImageService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.routeParamsSubscription = this.route.params
@@ -40,6 +48,10 @@ export class ArticleListEditComponent implements OnInit, OnDestroy {
     } else {
       this.title = 'Neuer Artikel'
     }
+    this.articleForm = new FormGroup({
+      'name': new FormControl(null, [Validators.required]),
+      'image': new FormControl(null, [Validators.required])
+    });
   }
 
   ngOnDestroy() {
@@ -58,7 +70,6 @@ export class ArticleListEditComponent implements OnInit, OnDestroy {
   }
 
   onUpload() {
-    // console.log(this.selectedFile);
     const uploadTask = this.firebaseService.uploadFile(this.selectedFile)
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
@@ -78,15 +89,30 @@ export class ArticleListEditComponent implements OnInit, OnDestroy {
         console.log(error);
       },
       () => {
-        uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-          console.log('File available at', downloadURL);
-          // this.imageService.imageUrls.push(downloadURL);
-          // console.log(this.imageService.imageUrls);
+        const url = uploadTask.snapshot.ref.getDownloadURL()
+          .then(function (downloadURL) {
+            return downloadURL;
+          });
+        // console.log(url);
+        url.then((url: string) => {
+          const image = new Image(this.articleForm.value.image.name, url);
+          this.articleService.addArticle(new Article(
+            this.articleForm.value.name,
+            image
+          ));
+          this.router.navigate(['shopping/articles'], { queryParamsHandling: 'preserve' });
         });
         this.uploading = false;
         this.fileUrl = null;
         this.selectedFile = null;
       });
   }
-  
+
+  onSubmit() {
+    console.log(this.articleForm);
+    if (this.articleForm.valid) {
+      this.onUpload();
+    }
+  }
+
 }

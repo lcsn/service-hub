@@ -24,25 +24,19 @@ export class FirebaseService {
   }
 
   uploadFile(file: File) {
-    // let fileName = this.editFileName(file.name);
-    // file.name = fileName;
-    const storageChildRef = firebase.storage().ref().child('images/' + file.name);
+    const imgPath = 'images/' + this.editFileName(file.name);
+    console.log('Saving image to: ' + imgPath);
+    const storageChildRef = firebase.storage().ref().child(imgPath);
     const uploadTask = storageChildRef.put(file, { contentType: file.type });
     return uploadTask;
-    // .then((snapshot) => {
-    //   console.log('File uploaded!');
-    // })
-    // .catch((error: any) => {
-    //   console.log(error);
-    // });
   }
 
-  // private editFileName(fileName: string): string {
-  //   let _fileName = (fileName.substring(0, fileName.lastIndexOf('.')) || fileName);
-  //   let ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length);
-  //   fileName += '.' + new Date().getTime() + '.';
-  //   fileName += ext;
-  //   return _fileName;
-  // }
+  private editFileName(fileName: string): string {
+    let _fileName = (fileName.substring(0, fileName.lastIndexOf('.')) || fileName);
+    let ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length);
+    _fileName += '.' + new Date().getTime() + '.';
+    _fileName += ext;
+    return _fileName;
+  }
 
 }
