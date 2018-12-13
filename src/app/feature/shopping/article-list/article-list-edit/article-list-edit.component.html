@@ -1,54 +1,52 @@
 <h3 mat-subheader>{{ title }}</h3>
-<div class="container">
-  <div class="col-sm-12">
-    <div class="row">
-      <ng-container *ngIf="fileUrl != null; else exampleImage">
-          <img ng-if [src]="fileUrl" alt="{{ selectedFile?.name }}" class="img-responsive" style="max-height: 150px;">
-      </ng-container>
-      <ng-template #exampleImage>
-        <mat-icon style="font-size: 150px; height: 150px;">photo</mat-icon>
-      </ng-template>
-      <hr>
-      <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-        <div class="my-container">
-          <mat-form-field>
-            <input matInput placeholder="Artikelname" formControlName="name">
-          </mat-form-field>
-          <input
-            style="display: none;"
-            type="file"
-            (change)="onFileChanged($event)"
-            #fileInput
-            formControlName="image">
-          <div class="button-row">
-            <button
-              mat-raised-button
-              color="primary"
-              (click)="fileInput.click()"
-              type="button">
-              <mat-icon>add_a_photo</mat-icon>
-            </button>
-            <button
-              mat-raised-button
-              color="primary"
-              (click)="onUpload()"
-              [disabled]="selectedFile === null"
-              type="button">
-              <mat-icon>cloud_upload</mat-icon>
-            </button>
-          </div>
-          <hr>
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="!articleForm.valid">
-            Erstellen
-            <mat-icon>cloud_upload</mat-icon>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+<mat-card class="my-container">
+  <ng-container *ngIf="fileUrl != null; else exampleImage">
+      <img mat-card-image ng-if [src]="fileUrl" alt="{{ selectedFile?.name }}" (click)="fileInput.click()" class="img-responsive" style="cursor: pointer;max-width: 300px;">
+  </ng-container>
+  <ng-template #exampleImage>
+    <mat-icon style="font-size: 300px; height: 300px;">photo</mat-icon>
+  </ng-template>
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="Artikelname" formControlName="name">
+      </mat-form-field>
+      <input
+        style="display: none;"
+        type="file"
+        accept=".png,.jpg"
+        (change)="onFileChanged($event)"
+        #fileInput
+        formControlName="image">   
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="fileInput.click()"
+          type="button">
+          <mat-icon>add_a_photo</mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onUpload()"
+          [disabled]="selectedFile === null"
+          type="button">
+          <mat-icon>cloud_upload</mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!articleForm.valid">
+          Erstellen
+          <mat-icon>cloud_upload</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </form>
+</mat-card>
+
 <mat-progress-bar class="footer" mode="indeterminate" *ngIf="uploading"></mat-progress-bar>

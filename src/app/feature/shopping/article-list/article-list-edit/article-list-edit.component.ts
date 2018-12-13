@@ -9,6 +9,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ArticleService } from 'src/app/__services/article.service';
 import { Article } from 'src/app/__model/article.model';
 import { Image } from 'src/app/__model/image.model';
+import { CustomValidators } from 'src/app/__validators/custom-validators';
 
 @Component({
   selector: 'app-article-list-edit',
@@ -50,7 +51,7 @@ export class ArticleListEditComponent implements OnInit, OnDestroy {
     }
     this.articleForm = new FormGroup({
       'name': new FormControl(null, [Validators.required]),
-      'image': new FormControl(null, [Validators.required])
+      'image': new FormControl(null, [Validators.required, CustomValidators.validateExtension])
     });
   }
 
@@ -95,7 +96,8 @@ export class ArticleListEditComponent implements OnInit, OnDestroy {
           });
         // console.log(url);
         url.then((url: string) => {
-          const image = new Image(this.articleForm.value.image.name, url);
+          const image = new Image(uploadTask.snapshot.ref.name, url);
+          // console.log(image);
           this.articleService.addArticle(new Article(
             this.articleForm.value.name,
             image

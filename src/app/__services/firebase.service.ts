@@ -32,7 +32,8 @@ export class FirebaseService {
   }
 
   private editFileName(fileName: string): string {
-    let _fileName = (fileName.substring(0, fileName.lastIndexOf('.')) || fileName);
+    // let _fileName = (fileName.substring(0, fileName.lastIndexOf('.')) || fileName);
+    let _fileName = 'image';
     let ext = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length);
     _fileName += '.' + new Date().getTime() + '.';
     _fileName += ext;

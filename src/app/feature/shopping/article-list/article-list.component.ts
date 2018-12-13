@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Article } from 'src/app/__model/article.model';
 import { ArticleService } from 'src/app/__services/article.service';
 import { Subscription } from 'rxjs';
+import { Image } from 'src/app/__model/image.model';
 
 @Component({
   selector: 'app-article-list',

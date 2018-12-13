@@ -23,6 +23,7 @@ import { ShoppingListComponent } from './feature/shopping/shopping-list/shopping
 import { ShoppingListEditComponent } from './feature/shopping/shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { ArticleListComponent } from './feature/shopping/article-list/article-list.component';
 import { ArticleListEditComponent } from './feature/shopping/article-list/article-list-edit/article-list-edit.component';
+import { ArticleListItemComponent } from './feature/shopping/article-list/article-list-item/article-list-item.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ArticleListEditComponent } from './feature/shopping/article-list/articl
     ShoppingHeaderComponent,
     ArticleListComponent,
     ArticleListEditComponent,
-    ShoppingHomeComponent
+    ShoppingHomeComponent,
+    ArticleListItemComponent
   ],
   imports: [
     ReactiveFormsModule,
