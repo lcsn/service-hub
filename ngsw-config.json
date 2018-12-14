@@ -33,7 +33,7 @@
     {
       "name": "data",
       "urls": [
-
+        "https://shopping-list-b7e7f.firebaseio.com/shopping-lists"
       ],
       "cacheConfig": {
         "maxSize": 5,

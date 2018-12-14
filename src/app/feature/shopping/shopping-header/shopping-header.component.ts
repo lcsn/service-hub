@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataStorageService } from 'src/app/__services/data-storage.service';
 
 @Component({
   selector: 'app-shopping-header',
@@ -9,7 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ShoppingHeaderComponent implements OnInit {
 
   constructor(private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
   }
@@ -32,6 +34,21 @@ export class ShoppingHeaderComponent implements OnInit {
 
   onAddArticle() {
     this.router.navigate([ 'articles/new' ], { relativeTo: this.route, queryParamsHandling: 'preserve' });
+  }
+
+  onSaveData() {
+    this.dataStorageService.saveData().subscribe(
+      () => {
+        console.log('Saved!');
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  onLoadData() {
+    this.dataStorageService.loadData();
   }
 
 }

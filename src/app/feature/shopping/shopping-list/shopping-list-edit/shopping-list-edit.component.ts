@@ -50,7 +50,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     console.log(this.shoppingListForm);
     if (this.shoppingListForm.valid) {
       const name = this.shoppingListForm.value.name;
-      this.shoppingListService.addShoppingList(new ShoppingList(name, []));
+      this.shoppingListService.addShoppingList(new ShoppingList(name, new Date(), []));
       this.router.navigate(['shopping/lists'], { queryParamsHandling: 'preserve' });
     }
   }

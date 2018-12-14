@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingListService } from 'src/app/__services/shopping-list.service';
 import { Subscription } from 'rxjs';
 import { ShoppingList } from 'src/app/__model/shopping-list.model';
+import { DataStorageService } from 'src/app/__services/data-storage.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,13 +11,14 @@ import { ShoppingList } from 'src/app/__model/shopping-list.model';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['position', 'name'];
+  displayedColumns: string[] = ['position', 'name', 'createdOn'];
 
   shoppingListDataSubscription: Subscription;
 
   shoppingLists: ShoppingList[] = [];
 
-  constructor(private shoppingListService: ShoppingListService) { }
+  constructor(private shoppingListService: ShoppingListService,
+    private dataStorageSerice: DataStorageService) { }
 
   ngOnInit() {
     this.shoppingListDataSubscription = this.shoppingListService.onShoppingListAdded
@@ -29,11 +31,16 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
+    // this.dataStorageSerice.getShoppingLists();
     this.shoppingLists = this.shoppingListService.getShoppingLists();
   }
 
   ngOnDestroy() {
     this.shoppingListDataSubscription.unsubscribe();
+  }
+
+  selectRow(row: any) {
+    console.log(row);
   }
 
 }

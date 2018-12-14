@@ -1,18 +1,24 @@
 <h3 mat-subheader>Alle Listen</h3>
-<table mat-table [dataSource]="shoppingLists" class="mat-elevation-z8" style="Width: 100%;">
+<mat-table [dataSource]="shoppingLists" class="mat-elevation-z8" style="Width: 100%;">
 
   <!-- Position Column -->
   <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> # </th>
-    <td mat-cell *matCellDef="let i = index"> {{ i }} </td>
+    <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+    <mat-cell *matCellDef="let i = index"> {{ i }} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element?.name }} </mat-cell>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+  <!-- CreatedOn Column -->
+  <ng-container matColumnDef="createdOn">
+    <mat-header-cell *matHeaderCellDef> Erstellt am </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element?.createdOn | date:"dd.MM.yyyy HH:mm:ss" }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" (click)="selectRow(row)"></mat-row>
+</mat-table>

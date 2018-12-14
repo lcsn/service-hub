@@ -24,6 +24,7 @@ import { ShoppingListEditComponent } from './feature/shopping/shopping-list/shop
 import { ArticleListComponent } from './feature/shopping/article-list/article-list.component';
 import { ArticleListEditComponent } from './feature/shopping/article-list/article-list-edit/article-list-edit.component';
 import { ArticleListItemComponent } from './feature/shopping/article-list/article-list-item/article-list-item.component';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({

@@ -29,4 +29,13 @@
     <mat-icon>add_circle_outline</mat-icon>
     <span>Neuer Artikel</span>
   </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="onSaveData()">
+    <mat-icon>save</mat-icon>
+    <span>Speichern</span>
+  </button>
+  <button mat-menu-item (click)="onLoadData()">
+    <mat-icon>get_app</mat-icon>
+    <span>Laden</span>
+  </button>
 </mat-menu>
