@@ -1,0 +1,56 @@
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container form {
+  margin-top: 2%;
+}
+
+.my-container {
+  margin-top: 2%;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+}
+
+.my-container app-article-list-item {
+  width: 96%;
+  margin: 3px 3px;
+}
+
+.form-field {
+  width: 65%;
+  margin-left: 2%;
+  padding-left: 2%;
+}
+  
+.form-button {
+  width: 25%;
+  margin-left: 4%;
+}
+
+.option-image {
+  margin-right: 1em;
+}
+
+@media only screen and (min-width: 576px) {
+  .my-container app-article-list-item {
+    width: 48%;
+    margin: 3px 3px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .my-container app-article-list-item {
+    width: 30%;
+    margin: 3px 3px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .my-container app-article-list-item {
+    width: 23%;
+    margin: 3px 3px;
+  }
+}

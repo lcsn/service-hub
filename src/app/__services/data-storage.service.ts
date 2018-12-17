@@ -34,8 +34,13 @@ export class DataStorageService {
 
   getShoppingLists() {
     return this.http.get('https://shopping-list-b7e7f.firebaseio.com/shopping-lists.json')
-      .pipe(map((data: any) => {
-        return data || [];
+      .pipe(map((shoppingLists: ShoppingList[]) => {
+        for (let list of shoppingLists) {
+          if (!list['articles']) {
+            list.articles = [];
+          }
+        }
+        return shoppingLists;
       }))
       .subscribe(
         (shoppingLists: ShoppingList[]) => {

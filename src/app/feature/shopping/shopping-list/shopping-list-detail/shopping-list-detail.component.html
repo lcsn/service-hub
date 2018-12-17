@@ -1,0 +1,53 @@
+<h3 mat-subheader>{{ shoppingList.name }}
+  <span class="text-muted" style="font-size: 16px;">
+    {{ shoppingList.createdOn | date:"dd.MM.yyyy HH:mm:ss" }}
+  </span>
+</h3>
+<mat-divider></mat-divider>
+  <div class="flex-container">
+    <form class="form">
+      <mat-form-field class="form-field">
+        <input
+          matInput
+          type="text"
+          placeholder="Artikelname" 
+          aria-label="Name eines Artikels"
+          [matAutocomplete]="auto"
+          [formControl]="articleCtrl" #articleInput>
+        <button mat-button *ngIf="articleInput.value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(articleInput)">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let article of filteredArticles | async"
+            [value]="article.name"
+            (click)="onSelectArticle(article)">
+            <img class="option-image" aria-hidden [src]="article.image.url" height="35">
+            <span>{{ article.name }}</span> |
+            <small>Preis: {{ article.price }}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button
+        class="form-button"
+        mat-raised-button
+        color="primary"
+        [disabled]="selectedArticle == null"
+        (click)="onAddArticle()">
+        Hinzufügen
+      </button>
+    </form>
+  </div>
+<mat-divider></mat-divider>
+<ng-container *ngIf="shoppingList.articles; else noArticles">
+  <div class="my-container">
+    <app-article-list-item (itemDeleted)="onDeleteArticle($event)" *ngFor="let article of shoppingList.articles; let i = index" [article]="article" [index]="i"></app-article-list-item>
+  </div>
+</ng-container>
+<ng-template #noArticles>
+  <div>
+    <span>
+      No Articles present!
+    </span>
+  </div>
+</ng-template>

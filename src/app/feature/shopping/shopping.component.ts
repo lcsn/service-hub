@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from 'src/app/__services/data-storage.service';
 
 @Component({
   selector: 'app-shopping',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
+    this.dataStorageService.loadData();
   }
 
 }

@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from './angular-material.module';
 import { LayoutModule } from '@angular/cdk/layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 // App-Root
@@ -25,6 +25,8 @@ import { ArticleListComponent } from './feature/shopping/article-list/article-li
 import { ArticleListEditComponent } from './feature/shopping/article-list/article-list-edit/article-list-edit.component';
 import { ArticleListItemComponent } from './feature/shopping/article-list/article-list-item/article-list-item.component';
 import { HttpModule } from '@angular/http';
+import { ListItemDirective } from './__directives/list-item.directive';
+import { ShoppingListDetailComponent } from './feature/shopping/shopping-list/shopping-list-detail/shopping-list-detail.component';
 
 
 @NgModule({
@@ -40,9 +42,12 @@ import { HttpModule } from '@angular/http';
     ArticleListComponent,
     ArticleListEditComponent,
     ShoppingHomeComponent,
-    ArticleListItemComponent
+    ArticleListItemComponent,
+    ListItemDirective,
+    ShoppingListDetailComponent
   ],
   imports: [
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,

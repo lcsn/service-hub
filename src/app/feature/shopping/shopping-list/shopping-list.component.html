@@ -4,21 +4,32 @@
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-    <mat-cell *matCellDef="let i = index"> {{ i }} </mat-cell>
+    <mat-cell style="cursor: pointer;" *matCellDef="let i = index"> {{ i }} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element?.name }} </mat-cell>
+    <mat-cell style="cursor: pointer;" *matCellDef="let element">
+      {{ element?.name }}
+      <mat-icon [matBadge]="element.articles.length" matBadgePosition="above after" matBadgeSize="medium"></mat-icon>
+    </mat-cell>
   </ng-container>
 
   <!-- CreatedOn Column -->
   <ng-container matColumnDef="createdOn">
     <mat-header-cell *matHeaderCellDef> Erstellt am </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element?.createdOn | date:"dd.MM.yyyy HH:mm:ss" }} </mat-cell>
+    <mat-cell style="cursor: pointer;" *matCellDef="let element"> {{ element?.createdOn | date:"dd.MM.yyyy HH:mm:ss" }} </mat-cell>
+  </ng-container>
+  
+  <!-- NumArticles Column -->
+  <ng-container matColumnDef="numArticles">
+    <mat-header-cell *matHeaderCellDef> #Artikel </mat-header-cell>
+    <mat-cell mat-cell *matCellDef="let element">
+      <mat-chip color="accent">{{ element.articles.length }}</mat-chip>
+    </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns" (click)="selectRow(row)"></mat-row>
+  <mat-row appListItem *matRowDef="let row; columns: displayedColumns;let i = index" (click)="selectRow(i)"></mat-row>
 </mat-table>
