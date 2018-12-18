@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ShoppingListService } from 'src/app/__services/shopping-list.service';
 import { ShoppingList } from 'src/app/__model/shopping-list.model';
 import { FormControl } from '@angular/forms';
@@ -27,7 +27,8 @@ export class ShoppingListDetailComponent implements OnInit {
 
   constructor(private shoppingListService: ShoppingListService,
     private articleService: ArticleService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.filteredArticles = this.articleCtrl.valueChanges
       .pipe(
         startWith(''),
@@ -60,6 +61,14 @@ export class ShoppingListDetailComponent implements OnInit {
     if (this.selectedArticle !== null) {
       this.shoppingList.articles.push(this.selectedArticle);
       // this.shoppingListService.addArticle(this.index, this.selectedArticle);
+    }
+  }
+
+  onDeleteList() {
+    const res = confirm(`${this.shoppingList.name} löschen?`);
+    if (res === true) {
+      this.shoppingListService.deleteShoppingList(this.index);
+      this.router.navigate(['../'], { relativeTo: this.route, queryParamsHandling: 'preserve'});
     }
   }
 

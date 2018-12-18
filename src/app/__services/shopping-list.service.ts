@@ -40,6 +40,11 @@ export class ShoppingListService {
     this.fireShoppingListsChanged();
   }
 
+  deleteShoppingList(index: number) {
+    this.shoppingLists.splice(index, 1);
+    this.fireShoppingListsChanged();
+  }
+
   fireShoppingListsChanged() {
     this.onShoppingListsChanged.next(this.shoppingLists.slice());
   }

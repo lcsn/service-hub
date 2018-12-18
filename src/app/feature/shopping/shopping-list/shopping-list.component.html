@@ -21,7 +21,7 @@
     <mat-header-cell *matHeaderCellDef> Erstellt am </mat-header-cell>
     <mat-cell style="cursor: pointer;" *matCellDef="let element"> {{ element?.createdOn | date:"dd.MM.yyyy HH:mm:ss" }} </mat-cell>
   </ng-container>
-  
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row appListItem *matRowDef="let row; columns: displayedColumns;let i = index" (click)="selectRow(i)"></mat-row>
 </mat-table>

@@ -1,7 +1,16 @@
-<h3 class="feature-header" mat-subheader>{{ shoppingList.name }}
+<h3 class="feature-header" mat-subheader>
+  {{ shoppingList.name }}
   <span class="top-right top-inc-5 right-inc-5 text-muted" style="font-size: 16px;">
     {{ shoppingList.createdOn | date:"dd.MM.yyyy HH:mm:ss" }}
   </span>
+  <button
+    mat-button
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="onDeleteList()">
+    <mat-icon>close</mat-icon>
+  </button>
 </h3>
 <mat-divider></mat-divider>
   <div class="flex-container">
