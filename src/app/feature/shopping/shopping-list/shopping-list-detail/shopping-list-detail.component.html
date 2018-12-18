@@ -1,20 +1,27 @@
-<h3 mat-subheader>{{ shoppingList.name }}
-  <span class="text-muted" style="font-size: 16px;">
+<h3 class="feature-header" mat-subheader>{{ shoppingList.name }}
+  <span class="top-right top-inc-5 right-inc-5 text-muted" style="font-size: 16px;">
     {{ shoppingList.createdOn | date:"dd.MM.yyyy HH:mm:ss" }}
   </span>
 </h3>
 <mat-divider></mat-divider>
   <div class="flex-container">
     <form class="form">
-      <mat-form-field class="form-field">
+      <mat-form-field class="width-90 width-65 ml-3 ml-xl-5 ml-md-4 ml-sm-4">
         <input
           matInput
           type="text"
           placeholder="Artikelname" 
           aria-label="Name eines Artikels"
           [matAutocomplete]="auto"
-          [formControl]="articleCtrl" #articleInput>
-        <button mat-button *ngIf="articleInput.value" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(articleInput)">
+          [formControl]="articleCtrl"
+          #articleInput>
+        <button
+          mat-button
+          *ngIf="articleInput.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="onClear(articleInput)">
           <mat-icon>close</mat-icon>
         </button>
         <mat-autocomplete #auto="matAutocomplete">
@@ -29,8 +36,8 @@
         </mat-autocomplete>
       </mat-form-field>
       <button
-        class="form-button"
         mat-raised-button
+        class="width-90 width-25 ml-3 ml-xl-4 ml-md-4 ml-sm-4 mb-4"
         color="primary"
         [disabled]="selectedArticle == null"
         (click)="onAddArticle()">

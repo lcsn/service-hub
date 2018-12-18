@@ -1,0 +1,19 @@
+.card {
+  height: 100%;
+  position: relative;
+}
+
+.card img {
+  margin-top: .3em;
+  height: 100%;
+}
+
+.card-image {
+  height: 75%;
+}
+
+.card .top-right {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}

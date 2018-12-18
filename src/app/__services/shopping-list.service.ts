@@ -8,7 +8,7 @@ import { Article } from '../__model/article.model';
 })
 export class ShoppingListService {
 
-  onShoppingListAdded = new Subject<ShoppingList[]>();
+  onShoppingListsChanged = new Subject<ShoppingList[]>();
 
   shoppingLists: ShoppingList[] = [
     // new ShoppingList('ABC', new Date('2018-12-14 14:00:00'), []),
@@ -32,16 +32,16 @@ export class ShoppingListService {
 
   setShoppingLists(shoppingLists: ShoppingList[]) {
     this.shoppingLists = shoppingLists;
-    this.fireShoppingListAdded();
+    this.fireShoppingListsChanged();
   }
 
   addShoppingList(list: ShoppingList) {
     this.shoppingLists.push(list);
-    this.fireShoppingListAdded();
+    this.fireShoppingListsChanged();
   }
 
-  fireShoppingListAdded() {
-    this.onShoppingListAdded.next(this.shoppingLists.slice());
+  fireShoppingListsChanged() {
+    this.onShoppingListsChanged.next(this.shoppingLists.slice());
   }
 
 }

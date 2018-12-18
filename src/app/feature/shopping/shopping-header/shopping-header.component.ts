@@ -37,14 +37,7 @@ export class ShoppingHeaderComponent implements OnInit {
   }
 
   onSaveData() {
-    this.dataStorageService.saveData().subscribe(
-      () => {
-        console.log('Saved!');
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+    this.dataStorageService.saveData();
   }
 
   onLoadData() {

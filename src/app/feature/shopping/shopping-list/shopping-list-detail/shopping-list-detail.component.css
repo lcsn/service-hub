@@ -19,19 +19,38 @@
   margin: 3px 3px;
 }
 
-.form-field {
-  width: 65%;
-  margin-left: 2%;
-  padding-left: 2%;
-}
-  
-.form-button {
+.width-25 {
   width: 25%;
-  margin-left: 4%;
+}
+
+.width-65 {
+  width: 65%;
+}
+
+.width-90 {
+  width: 90%;
 }
 
 .option-image {
   margin-right: 1em;
+}
+
+.feature-header {
+  position: relative;
+}
+
+.feature-header .top-right {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.feature-header .top-right.top-inc-5 {
+  top: 5px;
+}
+
+.feature-header .top-right.right-inc-5 {
+  right: 5px;
 }
 
 @media only screen and (min-width: 576px) {
@@ -46,11 +65,17 @@
     width: 30%;
     margin: 3px 3px;
   }
+  .width-25 {
+    width: 25%;
+  }  
+  .width-65 {
+    width: 65%;
+  }  
 }
 
 @media only screen and (min-width: 1200px) {
   .my-container app-article-list-item {
     width: 23%;
     margin: 3px 3px;
-  }
+  }    
 }

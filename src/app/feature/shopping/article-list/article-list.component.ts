@@ -20,7 +20,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-    this.articleDataSubscription = this.articleService.onArticleAdded
+    this.articleDataSubscription = this.articleService.onArticlesChanged
     .subscribe((data: Article[]) => {
       console.log(data);
       this.articles = data;

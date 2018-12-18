@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['position', 'name', 'createdOn', 'numArticles'];
+  displayedColumns: string[] = ['position', 'name', 'createdOn'];
 
   shoppingListDataSubscription: Subscription;
 
@@ -24,7 +24,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.shoppingListDataSubscription = this.shoppingListService.onShoppingListAdded
+    this.shoppingListDataSubscription = this.shoppingListService.onShoppingListsChanged
       .subscribe(
         (data: ShoppingList[]) => {
           console.log(data);
